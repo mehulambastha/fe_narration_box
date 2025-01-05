@@ -20,7 +20,7 @@ const todoLevels: userChoices[] = ['alpha', 'beta', 'sigma']
 
 
 
-const GenerateTodoDialog = ({ isFirstTime }: { isFirstTime: boolean }) => {
+const GenerateTodoDialog = () => {
   const [userPrompt, setuserPrompt] = useState('')
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
   const [userLevelChoice, setUserLevelChoice] = useState<userChoices | ''>('')
@@ -58,11 +58,7 @@ const GenerateTodoDialog = ({ isFirstTime }: { isFirstTime: boolean }) => {
     <Dialog>
       <DialogTrigger>
         <Button>
-          {
-            isFirstTime ?
-              `Okay, got it!` :
-              `Let's go!`
-          }
+          Let's go!
         </Button>
       </DialogTrigger>
       <DialogContent>

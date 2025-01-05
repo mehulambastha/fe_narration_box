@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 import { Button } from '../ui/button'
 import GenerateTodoDialog from './GenerateTodoDialog'
 
-const GenerateTodoDisclaimer = () => {
+const GenerateTodoDisclaimer = ({ onReadDisclaimer }: { onReadDisclaimer: Dispatch<SetStateAction<boolean>> }) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <Button onClick={() => {
-          localStorage.setItem('genTodoDisclaimer', 'false')
-        }}>
-          Let&apos;s go!
+        <Button
+        >
+          How do I?
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -58,7 +57,14 @@ const GenerateTodoDisclaimer = () => {
           </div>
           <DialogFooter>
             <DialogClose>
-              <GenerateTodoDialog isFirstTime={true} />
+              <Button
+                onClick={() => {
+                  localStorage.setItem('hasVisitedBefore', 'true')
+                  onReadDisclaimer(true)
+                }}
+              >
+                Okay, got it!
+              </Button>
             </DialogClose>
           </DialogFooter>
         </div>
