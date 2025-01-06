@@ -24,7 +24,7 @@ const GenerateTodoSection = () => {
         </p>
         <LottieIcon size={8} iconType='sparkle' />
       </div>
-      <div className='w-full px-5 flex flex-col'>
+      <div className='w-full text-center px-5 flex flex-col'>
         Generate todos by describing your desired goal!
         {
           hasVisitedBefore ? (

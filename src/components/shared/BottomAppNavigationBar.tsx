@@ -59,7 +59,7 @@ const BottomAppNavigationBar = () => {
         ))}
       </div>
 
-      <div className='bottom-25 flex fixed items-center justify-center active:scale-75 duration-150 left-1/2 translate-x-[120px] rounded-full h-14 w-14 bg-white'>
+      <div className='bottom-24 flex fixed items-center justify-center active:scale-75 duration-150 left-1/2 translate-x-[100px] rounded-full h-14 w-14 bg-white'>
         <LucidePlus size={40} />
       </div>
     </div>

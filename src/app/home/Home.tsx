@@ -7,7 +7,7 @@ import { LucidePlus } from 'lucide-react'
 
 const Home = () => {
   return (
-    <div className='w-full relative flex flex-col items-center gap-3 max-w-[340px] mx-auto'>
+    <div className='w-11/12 relative flex flex-col items-center gap-3 max-w-[640px] sm:max-w-[340px] mx-auto'>
       <AppHeader />
       <AddTodoSection />
       <GenerateTodoSection />
