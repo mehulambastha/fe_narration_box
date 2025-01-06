@@ -2,7 +2,7 @@
 import GenerateTodoDialog from '@/components/shared/GenerateTodoDialog'
 import GenerateTodoDisclaimer from '@/components/shared/GenerateTodoDisclaimer'
 import LottieIcon from '@/components/shared/LottieEmoticon'
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const GenerateTodoSection = () => {
   const [hasVisitedBefore, setHasVisitedBefore] = useState(false)
@@ -17,10 +17,10 @@ const GenerateTodoSection = () => {
   }, [])
 
   return (
-    <div className='w-full bg-darkAccent/20 flex text-white pb-5 flex-col items-center justify-evenly rounded-2xl'>
+    <div className='w-full bg-darkAccent/40 flex text-white pb-5 flex-col items-center justify-evenly rounded-2xl'>
       <div className='bg-accent flex items-center justify-center gap-2 copper-shine w-full py-4 text-2xl'>
         <p className='shine-text text-center font-extrabold'>
-          Generate
+          AI Generate
         </p>
         <LottieIcon size={8} iconType='sparkle' />
       </div>

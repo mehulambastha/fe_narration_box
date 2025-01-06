@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 import { Button } from '../ui/button'
-import GenerateTodoDialog from './GenerateTodoDialog'
 
 const GenerateTodoDisclaimer = ({ onReadDisclaimer }: { onReadDisclaimer: Dispatch<SetStateAction<boolean>> }) => {
   return (
@@ -17,7 +16,7 @@ const GenerateTodoDisclaimer = ({ onReadDisclaimer }: { onReadDisclaimer: Dispat
           <DialogTitle>
             Generating with AI
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className='text-slate-100'>
             Some things to remember before you go all crazy on it!
           </DialogDescription>
         </DialogHeader>

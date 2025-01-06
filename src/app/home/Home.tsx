@@ -3,7 +3,6 @@ import AppHeader from './components/AppHeader'
 import AddTodoSection from './components/AddTodoSection'
 import GenerateTodoSection from './components/GenerateTodoSection'
 import PreviewTodos from './components/PreviewTodos'
-import { LucidePlus } from 'lucide-react'
 
 const Home = () => {
   return (

@@ -1,9 +1,10 @@
 'use client'
 import { NavItems } from '@/lib/types'
-import { LucideChartSpline, LucideHome, LucideList, LucidePlus, LucideSettings, LucideUserRound } from 'lucide-react'
+import { LucideChartSpline, LucideHome, LucideList } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useRef, useState } from 'react'
+import CreateTaskDialog from './CreateTaskDialog'
 
 const EXCLUDED_PATHS = ['/login', '/login/queen', '/login/peasant']
 
@@ -60,7 +61,7 @@ const BottomAppNavigationBar = () => {
       </div>
 
       <div className='bottom-24 flex fixed items-center justify-center active:scale-75 duration-150 left-1/2 translate-x-[100px] rounded-full h-14 w-14 bg-white'>
-        <LucidePlus size={40} />
+        <CreateTaskDialog />
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Todos = () => {
   return (
-    <TodoList className='text-white' number={10} />
+    <TodoList className='text-white' />
   )
 }
 

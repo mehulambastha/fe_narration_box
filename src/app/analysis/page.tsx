@@ -1,18 +1,25 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
-import { toast } from 'sonner'
+import React from 'react'
+import TaskCharts from './components/Charts'
+import { useGetTasks } from '@/api/hooks/todoQueries'
 
 const Page = () => {
-  const hasShownToast = useRef(false)
+  const { data: items, isLoading } = useGetTasks()
 
-  useEffect(() => {
-    if (!hasShownToast.current) {
-      toast.success("Works")
-      hasShownToast.current = true
-    }
-  }, [])
   return (
-    <div>Page</div>
+    <div className='pb-[150px]'>
+      <h1 className='text-4xl font-bold w-full text-center py-3'>Your analysis</h1>
+      {
+        (!items && isLoading) && (
+          <div>Hang on...</div>
+        )
+      }
+      {
+        items && (
+          <TaskCharts tasks={items} />
+        )
+      }
+    </div>
   )
 }
 

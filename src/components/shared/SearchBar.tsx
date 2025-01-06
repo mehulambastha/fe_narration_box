@@ -2,7 +2,6 @@ import { LucideFilter, LucideSearch } from 'lucide-react';
 import React, { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import debounce from "lodash.debounce"
 import {
   Popover,
@@ -29,7 +28,7 @@ interface SearchBarProps {
   sortType: availableSortTypes | '';
 }
 
-const SearchBar = ({ searchQuery, setSearchQuery, setFilters, setSortType, sortType, filters }: SearchBarProps) => {
+const SearchBar = ({ setSearchQuery, setFilters, setSortType, sortType }: SearchBarProps) => {
   const [activeFilters, setActiveFilters] = useState<Record<availableFilters, boolean>>({
     'complete': false,
     'incomplete': false,
@@ -107,6 +106,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, setFilters, setSortType, sortT
                       allSortTypes.map(sort => {
                         return (
                           <SelectItem
+                            key={sort.value}
                             value={sort.value}>
                             {sort.label}
                           </SelectItem>

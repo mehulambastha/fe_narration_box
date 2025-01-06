@@ -13,7 +13,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { isUserChoice, userChoices } from '@/lib/types'
+import { GenerateTaskData, isUserChoice, userChoices } from '@/lib/types'
+import { useGenerateTasks } from '@/api/hooks/todoQueries'
+import { toast } from 'sonner'
 
 
 const todoLevels: userChoices[] = ['alpha', 'beta', 'sigma']
@@ -24,6 +26,7 @@ const GenerateTodoDialog = () => {
   const [userPrompt, setuserPrompt] = useState('')
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
   const [userLevelChoice, setUserLevelChoice] = useState<userChoices | ''>('')
+  const genTasks = useGenerateTasks()
 
 
   useEffect(() => {
@@ -40,16 +43,36 @@ const GenerateTodoDialog = () => {
       setuserPrompt(e.target.value)
     },
     "user-level": (e: any) => {
+
       e.preventDefault()
       if (isUserChoice(e.target.value)) {
         setUserLevelChoice(e.target.value)
       }
     },
     "generate-tasks": async () => {
+      if (userLevelChoice === '') {
+        toast.error('You must select a level')
+        return
+      }
+
       // simulate API call using tanstack query
-      setTimeout(() => {
-        console.log("gnerate task")
-      }, 200)
+      const returnLevel = (levelStr: userChoices) => {
+        switch (levelStr) {
+          case 'alpha':
+            return 1;
+          case 'beta':
+            return 2;
+          case 'sigma':
+            return 3;
+        }
+      }
+
+      const payload: GenerateTaskData = {
+        prompt: userPrompt,
+        level: returnLevel(userLevelChoice)
+      }
+
+      await genTasks.mutateAsync(payload)
     },
 
   }
@@ -70,9 +93,9 @@ const GenerateTodoDialog = () => {
             </DialogTitle>
           </DialogHeader>
         </DialogDescription>
-        <div className='flex py-5 px-3 flex-col gap-2 items-center justify-evenly'>
-          <Textarea value={userPrompt} onChange={eventHandler["user-prompt"]} ref={textAreaRef} placeholder='I wanna set up a food truck to sell organic indian street food...' />
-          <Select>
+        <div className='flex py-5 px-3 flex-col gap-3 items-center justify-evenly'>
+          <Textarea value={userPrompt} className='min-h-28' onChange={eventHandler["user-prompt"]} ref={textAreaRef} placeholder='I wanna set up a food truck to sell organic indian street food...' />
+          <Select value={userLevelChoice} defaultValue='' onValueChange={(value: userChoices) => setUserLevelChoice(value)}>
             <SelectTrigger className="w-[180px]">
               <SelectValue placeholder="Choose level" />
             </SelectTrigger>
@@ -81,7 +104,7 @@ const GenerateTodoDialog = () => {
                 <SelectLabel>Levels</SelectLabel>
                 {
                   todoLevels.map(level => (
-                    <SelectItem value={level} onClick={eventHandler["user-level"]}>{level}</SelectItem>
+                    <SelectItem value={level} key={level} id={level} onClick={eventHandler["user-level"]}>{level}</SelectItem>
                   ))
                 }
               </SelectGroup>
