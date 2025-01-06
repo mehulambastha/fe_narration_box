@@ -13,7 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { GenerateTaskData, isUserChoice, userChoices } from '@/lib/types'
+import { GenerateTaskData, userChoices } from '@/lib/types'
 import { useGenerateTasks } from '@/api/hooks/todoQueries'
 import { toast } from 'sonner'
 
@@ -41,13 +41,6 @@ const GenerateTodoDialog = () => {
     "user-prompt": (e: ChangeEvent<HTMLTextAreaElement>) => {
       e.preventDefault()
       setuserPrompt(e.target.value)
-    },
-    "user-level": (e: any) => {
-
-      e.preventDefault()
-      if (isUserChoice(e.target.value)) {
-        setUserLevelChoice(e.target.value)
-      }
     },
     "generate-tasks": async () => {
       if (userLevelChoice === '') {
@@ -81,7 +74,7 @@ const GenerateTodoDialog = () => {
     <Dialog>
       <DialogTrigger>
         <Button>
-          Let's go!
+          Let&apos;s go!
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -104,7 +97,7 @@ const GenerateTodoDialog = () => {
                 <SelectLabel>Levels</SelectLabel>
                 {
                   todoLevels.map(level => (
-                    <SelectItem value={level} key={level} id={level} onClick={eventHandler["user-level"]}>{level}</SelectItem>
+                    <SelectItem value={level} key={level} id={level}>{level}</SelectItem>
                   ))
                 }
               </SelectGroup>

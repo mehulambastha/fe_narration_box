@@ -42,7 +42,7 @@ const SearchBar = ({ setSearchQuery, setFilters, setSortType, sortType }: Search
       debounce((query) => {
         setSearchQuery(query);
       }, 200),
-    []
+    [setSearchQuery]
   );
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const SearchBar = ({ setSearchQuery, setFilters, setSortType, sortType }: Search
     return () => {
       debouncedQuery.cancel()
     }
-  }, [localSearchQuery])
+  }, [localSearchQuery, debouncedQuery])
 
 
   return (

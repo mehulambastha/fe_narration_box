@@ -44,7 +44,7 @@ function returnDeadlineColorComponent(created_time: string | Date, time_estimate
 
 }
 
-const TodoList = ({ number, className, searchBar = false }: { number?: number, className?: ClassNameValue, searchBar?: boolean }) => {
+const TodoList = ({ number, className }: { number?: number, className?: ClassNameValue, searchBar?: boolean }) => {
   const { data: items, isLoading } = useGetTasks()
   const deleteTask = useDeleteTask()
   const markAsComplete = useMarkAsComplete()
@@ -69,12 +69,6 @@ const TodoList = ({ number, className, searchBar = false }: { number?: number, c
   }, [items])
 
   useEffect(() => {
-    if (!isLoading) {
-      console.log('dta is; ', items)
-    }
-  }, [isLoading])
-
-  useEffect(() => {
     if (items && !isLoading) {
       const filtertask = items?.filter(item => {
         if (item.title.toLowerCase().includes(debouncedQuery.toLowerCase()) || item.description.toLowerCase().includes(debouncedQuery.toLowerCase())) {
@@ -83,7 +77,7 @@ const TodoList = ({ number, className, searchBar = false }: { number?: number, c
       })
       setFilteredItems(filtertask as Todotype)
     }
-  }, [debouncedQuery, items])
+  }, [debouncedQuery, items, isLoading])
 
   useEffect(() => {
     if (items && !isLoading) {
@@ -93,7 +87,6 @@ const TodoList = ({ number, className, searchBar = false }: { number?: number, c
           for (const filter of filters) {
             switch (filter) {
               case 'complete':
-                console.log("Tackling complted ones. Letting go: ", item)
                 if (item.completed) {
                   return item
                 }
@@ -115,10 +108,8 @@ const TodoList = ({ number, className, searchBar = false }: { number?: number, c
           return item
         }
       })
-      console.log("Based on the filters, first time: ", itemssort)
 
       if (sortType) {
-        console.log('Sort type povidde.')
         switch (sortType) {
           case 'big-first':
             setFilteredItems(itemssort.sort((a, b) => {
@@ -136,12 +127,11 @@ const TodoList = ({ number, className, searchBar = false }: { number?: number, c
             break;
         }
       } else {
-        console.log('Sort not orivde. Setting filtered items to : ', itemssort)
         setFilteredItems(itemssort)
       }
 
     }
-  }, [filters, sortType, items])
+  }, [filters, sortType, items, isLoading])
 
   if (isLoading) return <p className='text-white'>Hold on...</p>
 
@@ -186,17 +176,19 @@ const TodoList = ({ number, className, searchBar = false }: { number?: number, c
                 <div className='font-bold underline'>
                   {todo.completed ? 'Completed' : "Not complete"}
                 </div>
-                {
-                  !todo.completed && (
-                    <div className='w-full flex items-center justify-between gap-2'>
+
+                <div className='w-full flex items-center justify-between gap-2'>
+                  {
+                    !todo.completed && (
                       <Button size={'sm'} className='block bg-green-500' onClick={() => handleComplete(todo.id)}>
                         <LucideCheckSquare className='inline' /> Done
                       </Button>
-                      <Button size={'sm'} className='block bg-red-500' onClick={() => handleDelete(todo.id)}>
-                        <LucideTrash className='inline' /> Delete
-                      </Button>
-                    </div>
-                  )}
+                    )}
+
+                  <Button size={'sm'} className='block bg-red-500' onClick={() => handleDelete(todo.id)}>
+                    <LucideTrash className='inline' /> Delete
+                  </Button>
+                </div>
               </AccordionContent>
             </AccordionItem>
           ))

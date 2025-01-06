@@ -26,7 +26,7 @@ const AppHeader = () => {
         <p className='shine-text'>DueIt.ai</p>
       </motion.span>
       <div className='text-darkAccent text-base text-justify w-full'>
-        We don&apos;t do hard deadlines here, let&apos;s cut down on anxiety and work for a healthier mind too. For this reason, we don't believe in edits, don&apos;t edit you task, do it! or delete it and start afresh. Redoing and changing, giving yourself more and more time are old habits, welcome to DueIt! Change begins with you.
+        We don&apos;t do hard deadlines here, let&apos;s cut down on anxiety and work for a healthier mind too. For this reason, we don&apos;t believe in edits, don&apos;t edit you task, do it! or delete it and start afresh. Redoing and changing, giving yourself more and more time are old habits, welcome to DueIt! Change begins with you.
       </div>
     </div>
   )
