@@ -1,8 +1,11 @@
 # DueIt
 We don't do hard deadlines here, let's cut down on anxiety and work for a healthier mind too. For this reason, we don't believe in edits, don't edit you task, do it! or delete it and start afresh. Redoing and changing, giving yourself more and more time are old habits, welcome to DueIt! Change begins with you.
 
+## Catch it live
+[nb.mehul.pro](https://nb.mehul.pro)
+
 ## Tech Stack Used
-NextJS (Typescript), Tailwind CSS, ShadCn UI, PWA Design philosophy. I have tried to maintain modularity and code quality to the best of my abilities.
+NextJS (Typescript), Tailwind CSS, ShadCn UI, PWA Design philosophy. I have tried to maintain modularity and code quality to the best of my abilities. Deployed on my personal E2 instance running on Google Cloud. Deployed using strategies like reverse proxying using nginx (not a fan of apache personally), creating system service file for maintenace and configuring dns.
 
 ## Planning
 Right off the bat, I wanted to create a mobile-first design rather than your conventional, traditional dashboard. The design philosophy is for PWA (Progressive Web App). With just a few tweaks here and there, and a nice tiny little manifest.json we can have ourselves a downloadable version of the app, which runs in its own browser instance, providing the modularity of traditional mobile apps while enabling web technologies to be easily scaled up to billions of mobile users. 
